@@ -30,7 +30,7 @@ const numbersToWords = {
   nine: 9,
 };
 
-const getValuePro = (text: string): any => {
+const getValue = (text: string): any => {
     let firstNumber;
     let secondNumber;
     const textArray = Object.keys(numbersToWords);
@@ -74,7 +74,7 @@ const getValuePro = (text: string): any => {
 
 const two = (): number => {
     const data = fs.readFileSync('data').toString().split('\n').map((line) => {
-        return getValuePro(line);
+        return getValue(line);
     }).reduce((acc, curr) => {
         return acc + curr;
     }, 0);
