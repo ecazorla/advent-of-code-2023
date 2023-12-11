@@ -36,8 +36,8 @@ const countGalaxies = (universe: string[][]): number[][] => {
     const galaxies = [];
     for (let i = 0; i < universe.length; i++) {
         const line = universe[i];
-        for (let j = 0; j < universe[i].length; j++) {
-            if (universe[i][j] === '#') {
+        for (let j = 0; j < line.length; j++) {
+            if (line[j] === '#') {
                 galaxies.push([i, j]);
             }
         }
