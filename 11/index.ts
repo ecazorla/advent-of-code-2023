@@ -93,12 +93,14 @@ const getEmptyColoumsFromPairs = (pair: number[][], universe: string[][]): numbe
 }
 
 const main = (): any => {
+    const universeExpansionFactor = 2;
     let universe = fs.readFileSync('data').toString().split('\n').map(line => line.split(''));
-    universe = expand(universe);
     const galaxies = countGalaxies(universe);
     const pairs = getPairsOfGalaxies(galaxies);
     return pairs.map(pair => {
-        const distance = Math.abs(pair[0][0] - pair[1][0]) + Math.abs(pair[0][1] - pair[1][1]);
+        const emptyColums = getEmptyColoumsFromPairs(pair, universe);
+        const emptyRows = getEmptyRowsFromPairs(pair, universe);
+        const distance = Math.abs(pair[0][0] - pair[1][0]) + Math.abs(pair[0][1] - pair[1][1]) + ((universeExpansionFactor - 1) * (emptyRows + emptyColums));
         return distance;
     }).reduce((a, b) => a + b, 0);
 }
